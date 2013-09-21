@@ -8,9 +8,14 @@ var client = tumblr.createClient({
 	token_secret: 'yxoWX6sQVWyZiChKXrCp7nCL5bwIOPyUYqQYAfz1U1zCL0lz2h'
 });
 
+app.get('/', function(req, res){
+  res.send('Hello Index World');
+});
+
 app.get('/hello', function(req, res){
   res.send('Hello World');
 });
 
-app.listen(3000);
-console.log('Listening on port 3000');
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
