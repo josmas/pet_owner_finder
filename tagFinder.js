@@ -6,15 +6,36 @@ var client = tumblr.createClient({
 	token_secret: 'yxoWX6sQVWyZiChKXrCp7nCL5bwIOPyUYqQYAfz1U1zCL0lz2h'
 });
 
-module.exports = {
-	tagSearch: function(tag) {
-		client.tagged(tag, function(err,data) {
-			return data;
-		});
-	},
-	userSearch: function(blogname) {
-		client.posts(blogname, function(err,data) {
-			console.log(data);
+var tagMap = function(postList) {
+	var tagMap = {};
+	postList.forEach(function(post) {
+		post.tags.forEach(function(tag) {
+			if (Object.keys(tagMap).indexOf(tag) == -1) {
+				tagMap[tag] = 1;
+			} else {
+				tagMap[tag] += 1;
+			}
 		})
-	}
+	});
+	console.log(tagMap);
+}
+
+var userSearch = function(blogname) {
+	client.posts(blogname, function(err, data) {
+		tagMap(data.posts);
+	});
+}
+
+var tagSearch = function(tag) {
+	client.tagged(tag, function(err, posts) {
+		posts.forEach(function(post) {
+			userSearch(post.blog_name);
+		});
+	});
+}
+
+module.exports = {
+	tagMap: tagMap,
+	userSearch: userSearch,
+	tagSearch: tagSearch
 }
