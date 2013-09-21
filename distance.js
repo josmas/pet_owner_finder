@@ -18,7 +18,7 @@ module.exports = {
 		 	sum += Math.pow((counts[i][0] - counts[i][1]), 2);
 		};
 		return Math.sqrt(sum);
-	}
+	},
 	normalize: function(distances) {
   		var min = distances.slice(0).sort()[0];
   		var max = distances.slice(0).sort().reverse()[0];
