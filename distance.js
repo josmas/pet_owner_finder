@@ -7,14 +7,16 @@ module.exports = {
 		var counts = [];
 		for (var tag in userTags) {
 			if (tag in blogTags) {
-				counts.push[[userTags[tag], blogTags[tag]]];
+				counts.push([userTags[tag], blogTags[tag]]);
 			} else {
-				counts.push[[userTags[tag], 0]];
+				counts.push([userTags[tag], 0]);
 			}
 		}
+		
 		var sum = 0;
 		for (var i = counts.length - 1; i >= 0; i--) {
-		 	sum += counts[i][0] + counts[i][1];
+		 	sum += Math.pow((counts[i][0] + counts[i][1]), 2);
 		};
+		return Math.sqrt(sum);
 	}
 }
