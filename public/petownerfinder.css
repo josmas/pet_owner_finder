@@ -20,6 +20,13 @@
 }
 
 .title {
-	font-size: 5em;
+	font-size: 4em;
 	font-weight: bolder;
+}
+
+.title2 {
+	font-size: 4em;
+	font-weight: bolder;
+	color: rgb(128,0,0);
+	font-style: italic;
 }

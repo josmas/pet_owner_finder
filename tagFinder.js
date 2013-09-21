@@ -1,4 +1,5 @@
 var tumblr = require('tumblr.js');
+var distance = require('./distance.js');
 var client = tumblr.createClient({
 	consumer_key: 'mQ5SRRL7mbMZwBAfNxUZX9VNIrUgzeuVoCK080860XQVMM6Vah',
 	consumer_secret: 'kRNPtQzpTr9cnmt61Dl48PMr1JQ3zEJ1DEVBAgbGq3bEfO2TgO',
@@ -6,36 +7,52 @@ var client = tumblr.createClient({
 	token_secret: 'yxoWX6sQVWyZiChKXrCp7nCL5bwIOPyUYqQYAfz1U1zCL0lz2h'
 });
 
-var tagMap = function(postList) {
-	var tagMap = {};
+var matchObject = function() {
+	_matches = []
+	_matchCount = 0;
+}
+
+matchObject.prototype.tagMap = function(postList, b) {
+	var matchMap = {'tagCount': {}};
 	postList.forEach(function(post) {
+		if (post.type == "photo") {
+			matchMap['photo'] = post.photos[0]['alt_sizes'][0]['url'];
+			matchMap['user'] = post.blog_name;
+		}
 		post.tags.forEach(function(tag) {
-			if (Object.keys(tagMap).indexOf(tag) == -1) {
-				tagMap[tag] = 1;
+			if (Object.keys(matchMap['tagCount']).indexOf(tag) == -1) {
+				matchMap['tagCount'][tag] = 1;
 			} else {
-				tagMap[tag] += 1;
+				matchMap['tagCount'][tag] += 1;
 			}
 		})
 	});
-	console.log(tagMap);
+	if (b) {
+		return matchMap['tagCount'];
+	} else {
+		client.posts('hedgehogsofasgard', function(err, data) {
+			userTagMap = tagMap(data.posts, true);
+			console.log(distance.match(userTagMap, matchMap['tagCount']));
+			console.log(matchMap);
+			if (Object.keys(matchMap).indexOf('user') != -1) {
+				this._matches.push(matchMap);
+			}
+		});
+	}
 }
 
-var userSearch = function(blogname) {
+matchObject.prototype.userSearch = function(blogname, b) {
 	client.posts(blogname, function(err, data) {
-		tagMap(data.posts);
+		tagMap(data.posts, b);
 	});
 }
 
-var tagSearch = function(tag) {
+matchObject.prototype.tagSearch = function(tag) {
 	client.tagged(tag, function(err, posts) {
 		posts.forEach(function(post) {
-			userSearch(post.blog_name);
+			userSearch(post.blog_name, false);
 		});
 	});
 }
 
-module.exports = {
-	tagMap: tagMap,
-	userSearch: userSearch,
-	tagSearch: tagSearch
-}
+module.exports.matchObject = matchObject;
