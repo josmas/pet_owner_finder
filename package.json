@@ -1,0 +1,27 @@
+{
+  "name": "pet_owner_finder",
+  "version": "0.0.1",
+  "description": "Pet Owner Finder",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:josmas/pet_owner_finder.git"
+  },
+  "keywords": [
+    "pet",
+    "owner",
+    "finder"
+  ],
+  "author": "the pet owner finder team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josmas/pet_owner_finder/issues"
+  },
+  "dependencies": {
+    "tumblr.js": "0.0.4",
+    "express": "~3.4.0"
+  }
+}
