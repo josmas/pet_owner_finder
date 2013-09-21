@@ -19,7 +19,12 @@ $('#item3').attr("src", picnames()[3]);
 $('#item4').attr("src", picnames()[4]);
 
 $('.carousel').carousel({
-    interval: 2000
+  interval: 0
+});
+
+$("#next").click(function() {
+  $('.carousel').carousel('next');
+  changeCompatMessage(1); //TODO choose the right message here depending on rating
 });
 
 var cMess1 ='You are going to be alone for the rest of your life';
