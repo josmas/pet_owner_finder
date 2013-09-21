@@ -13,8 +13,8 @@ module.exports = {
 			}
 		}
 		var sum = 0;
-		for (var pair in counts) {
-			sum += pair[0] + pair[1];
-		}
+		for (var i = counts.length - 1; i >= 0; i--) {
+		 	sum += counts[i][0] + counts[i][1];
+		};
 	}
 }
