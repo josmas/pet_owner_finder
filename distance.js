@@ -14,8 +14,7 @@ module.exports = {
 		}
 		var sum = 0;
 		for (var pair in counts) {
-			sum += Math.pow((pair[0] - pair[1]), 2);		
+			sum += pair[0] + pair[1];
 		}
-		return Math.sqrt(sum);
 	}
 }
