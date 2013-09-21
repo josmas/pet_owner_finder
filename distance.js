@@ -19,4 +19,12 @@ module.exports = {
 		};
 		return Math.sqrt(sum);
 	}
+	normalize: function(distances) {
+  		var min = distances.slice(0).sort()[0];
+  		var max = distances.slice(0).sort().reverse()[0];
+		for (var i = distances.length - 1; i >= 0; i--) {
+			distances[i] = (distances[i] - min)/(max-min);
+		};
+		return distances;
+	}
 }
