@@ -12,10 +12,10 @@ module.exports = {
 				counts.push([userTags[tag], 0]);
 			}
 		}
-		
+
 		var sum = 0;
 		for (var i = counts.length - 1; i >= 0; i--) {
-		 	sum += Math.pow((counts[i][0] + counts[i][1]), 2);
+		 	sum += Math.pow((counts[i][0] - counts[i][1]), 2);
 		};
 		return Math.sqrt(sum);
 	}
