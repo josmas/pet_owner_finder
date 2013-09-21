@@ -10,7 +10,7 @@ function picnames(){
     "http://24.media.tumblr.com/51a2157e649c4d7a83f4d1a4d6e86062/tumblr_mst2992s291rvuefeo1_500.jpg"
     ];
   return pics;
-}
+};
 
 $('#item0').attr("src", picnames()[0]);
 $('#item1').attr("src", picnames()[1]);
@@ -21,3 +21,22 @@ $('#item4').attr("src", picnames()[4]);
 $('.carousel').carousel({
     interval: 2000
 });
+
+var cMess1 ='You are going to be alone for the rest of your life';
+var cMess2 ='buy another pet, you are gonna need it';
+var cMess3 ='message 3 is for somehtine else';
+var cMess4 ='message 4 is also for something else';
+var cMess5 ='default message';
+
+var compatMessages = [];
+compatMessages.push(cMess1);
+compatMessages.push(cMess2);
+compatMessages.push(cMess3);
+compatMessages.push(cMess4);
+compatMessages.push(cMess5);
+
+function changeCompatMessage(messageNumber){
+  $('#compatibility').text(compatMessages[messageNumber]);
+}
+//default message
+$('#compatibility').text(compatMessages[4]);
