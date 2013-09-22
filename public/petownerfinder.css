@@ -25,6 +25,13 @@
 	margin-right: -25px;
 }
 
+.titleresults {
+	font-size: 4em;
+	font-weight: bolder;
+	margin-bottom: 0;
+	margin-right: -70px;
+}
+
 .title2 {
 	font-size: 4em;
 	font-weight: bolder;
@@ -35,6 +42,27 @@
 	padding-left: 5px;
 }
 
+.title2results {
+	font-size: 4em;
+	font-weight: bolder;
+	color: rgb(128,0,0);
+	font-style: italic;
+	margin-bottom: 2;
+	text-align: left;
+	padding-left: 5px;
+	margin-left: -65px;
+}
+
 .tagline {
 	margin-top: -30px;
+}
+
+.ImageBorder {
+    border: 10px solid black;
+}
+
+#compatibility{
+	font-size: 2em;
+	font-weight: bolder;
+	color: rgb(128,0,0);
 }
