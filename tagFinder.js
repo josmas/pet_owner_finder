@@ -26,17 +26,29 @@ var getBlogs = function(pet, userBlog, renderCallback) {
             blogObj["tagMap"] = {};
             blogObj["distance"] = -1;
             blogObj["pet"] = pet;
+            blogObj["hide"] = false;
             blogs.push(blogObj);
         });
         // Populate empty object fields
         async.map(blogs, getTags, function(err, results) {
             var userTags = {};
+            var usernames = {};
             // Grab user tags
             results.forEach(function(obj) {
                 if ("user" in obj) userTags = obj["tagMap"];
+                if (obj[imgUrl] === '')  blogObj["hide"] = true;
+                if (obj["blogTitle"] in usernames) {
+                    blogObj["hide"] = true;
+                } else {
+                    usernames[obj["blogTitle"]] = true;
+                }
+            });
+            var uniqueBlogs = [];
+            results.forEach(function(blog) {
+                if (blog["hide"] == false) uniqueBlogs.push(blog);
             });
             // Populate distances and render
-            renderCallback(getDistances(userTags, results));
+            renderCallback(getDistances(userTags, uniqueBlogs));
         });
     });
 }
