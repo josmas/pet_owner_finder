@@ -28,7 +28,7 @@ $("#next").click(function() {
 });
 
 var cMess1 ='You should consider getting another pet instead';
-var cMess2 ='You’re two difference species';
+var cMess2 ='You’re two different species';
 var cMess3 ='CAT FIGHT!!';
 var cMess4 ='There’s only room for one pet in this relationship';
 var cMess5 ='You two have a dog/puppy dynamic and that’s weird';
