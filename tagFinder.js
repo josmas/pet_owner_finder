@@ -8,7 +8,7 @@ var client = tumblr.createClient({
     token_secret: 'yxoWX6sQVWyZiChKXrCp7nCL5bwIOPyUYqQYAfz1U1zCL0lz2h'
 });
 
-var getBlogs = function(pet, userBlog) {
+var getBlogs = function(pet, userBlog, renderCallback) {
     client.tagged(pet, function(err, posts) {
         blogs = [];
         var userObj = {};
@@ -35,8 +35,8 @@ var getBlogs = function(pet, userBlog) {
             results.forEach(function(obj) {
                 if ("user" in obj) userTags = obj["tagMap"];
             });
-            // Populate distances and return
-            return getDistances(userTags, results);
+            // Populate distances and render
+            renderCallback(getDistances(userTags, results));
         });
     });
 }
