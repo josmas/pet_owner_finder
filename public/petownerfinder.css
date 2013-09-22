@@ -22,6 +22,7 @@
 .title {
 	font-size: 4em;
 	font-weight: bolder;
+	margin-bottom: 0;
 }
 
 .title2 {
@@ -29,4 +30,9 @@
 	font-weight: bolder;
 	color: rgb(128,0,0);
 	font-style: italic;
+	margin-bottom: 2;
+}
+
+.tagline {
+	margin-top: -30px;
 }
