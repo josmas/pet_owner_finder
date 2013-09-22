@@ -23,8 +23,19 @@ $('.carousel').carousel({
 });
 
 $("#next").click(function() {
-  $('.carousel').carousel('next');
-  changeCompatMessage(1); //TODO choose the right message here depending on rating
+  $("#vidtext").show();
+  $("#vid").show();
+  $("#vid").empty();
+  $("#vid").html('<iframe id="if" width="420" height="315" src="//www.youtube.com/embed/bXdcxYX5XNw?rel=0&amp;autoplay=1" frameborder="0" allowfullscreen autoplay=1></iframe>');
+  setTimeout(function(){  
+    $("#vidtext").hide();
+    $("#vid").hide();
+    $("#vid").empty();
+    $('.carousel').carousel('next');
+    changeCompatMessage(1);
+},7500);
+
+//TODO choose the right message here depending on rating
 });
 
 var cMess1 ='You should consider getting another pet instead';
@@ -57,4 +68,10 @@ function changeCompatMessage(messageNumber){
 //default message
 $('#compatibility').text(compatMessages[4]);
 
-$('#yes').click(function(){ alert('we are sending you to the tumblr'); });
+$('#yes').click(function(){ 
+
+  alert('we are sending you to the tumblr'); 
+      $("#vidtext").hide();
+      $("#vid").hide();
+      $("#vid").empty();
+});

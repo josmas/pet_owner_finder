@@ -66,3 +66,22 @@
 	font-weight: bolder;
 	color: rgb(128,0,0);
 }
+
+#vid{
+	display: none;
+	height: 50px;
+	width: 50px;
+	top: 110px;
+	left: 0px;
+	margin-left: -10px;
+	position: absolute;
+}
+
+#vidtext{
+	display: none;
+	vertical-align: center;
+	top: 60px;
+	left: 0px;
+	position: absolute;
+}
+
