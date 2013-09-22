@@ -19,14 +19,6 @@ html
         #result(class="span12", align="center")
           h2 It's mating season! 
           #myCarousel(class="carousel slide")
-            ol(class="carousel-indicators")
-              - var firstCounter = 0;
-              each da in data
-                if (firstCounter === 0)
-                  li(data-target="#myCarousel", data-slide-to="0", class="active")
-                else 
-                  li(data-target="#myCarousel", data-slide-to="#{firstCounter}")
-                - firstCounter++;
             .carousel-inner
               - var counter = 0;
               each da in data
