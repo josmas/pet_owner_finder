@@ -33,7 +33,7 @@ var getBlogs = function(pet, userBlog, renderCallback) {
         async.map(blogs, getTags, function(err, results) {
             var userTags = {};
             var usernames = {};
-            // Grab user tags
+            // Grab user tags and mark bad results
             results.forEach(function(obj) {
                 if ("user" in obj) userTags = obj["tagMap"];
                 if (obj["imgUrl"] === '')  obj["hide"] = true;
@@ -44,6 +44,7 @@ var getBlogs = function(pet, userBlog, renderCallback) {
                 }
             });
             var uniqueBlogs = [];
+            // Hide bad results
             results.forEach(function(blog) {
                 if (blog["hide"] == false) uniqueBlogs.push(blog);
             });
