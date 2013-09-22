@@ -6,7 +6,7 @@ $('.carousel').carousel({
 });
 
 $("#next").click(function() {
-  console.log('here');
+  $('.active.item').fadeOut(9500);
   $("#vidtext").show();
   $("#vid").show();
   $("#vid").empty();
@@ -15,22 +15,23 @@ $("#next").click(function() {
     $("#vidtext").hide();
     $("#vid").hide();
     $("#vid").empty();
+    $('.active.item').show();
     $('.carousel').carousel('next');
     changeCompatMessage($(".active.item").find(":first-child").attr('rating'));
   },7500);
 });
 
 
-var cMess1 ='You should consider getting another pet instead';
-var cMess2 ='You’re two different species';
-var cMess3 ='CAT FIGHT!!';
-var cMess4 ='There’s only room for one pet in this relationship';
-var cMess5 ='You two have a dog/puppy dynamic and that’s weird';
-var cMess6 ='You love your pets a very similar amount and that’s nice';
-var cMess7 ='You guys should date and maybe your pets should too';
-var cMess8 ='ME-OWWWWW OWWWW';
-var cMess9 ='Your pets will look great in bow ties at your wedding';
-var cMess10 ='Good thing neither one of you are spayed/neutered';
+var cMess10 ='You should consider getting another pet instead';
+var cMess9 ='You’re two different species';
+var cMess8 ='CAT FIGHT!!';
+var cMess7 ='There’s only room for one pet in this relationship';
+var cMess6 ='You two have a dog/puppy dynamic and that’s weird';
+var cMess5 ='You love your pets a very similar amount and that’s nice';
+var cMess4 ='You guys should date and maybe your pets should too';
+var cMess3 ='ME-OWWWWW OWWWW';
+var cMess2 ='Your pets will look great in bow ties at your wedding';
+var cMess1 ='Good thing neither one of you are spayed/neutered';
 
 
 var compatMessages = [];
@@ -51,5 +52,9 @@ function changeCompatMessage(messageNumber){
 //default message
 $('#compatibility').text(compatMessages[4]);
 
-$('#yes').click(function(){ window.location='http://' + $(".active.item").find(":first-child").attr('tumblr') + '.tumblr.com' });
+$('#yes').click(function(){ 
+  if (window.confirm("Are you sure about this match? Pets are a forever thing.")) { 
+    window.location='http://' + $(".active.item").find(":first-child").attr('tumblr') + '.tumblr.com';
+  }
+});
 
