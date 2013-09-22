@@ -7,15 +7,16 @@ var client = tumblr.createClient({
 	token_secret: 'yxoWX6sQVWyZiChKXrCp7nCL5bwIOPyUYqQYAfz1U1zCL0lz2h'
 });
 
-var matchObject = function() {
-	_matches = []
-	_matchCount = 0;
+var MatchObject = function() {
+	this._matches = [];
+	this._matchCount = -1;
+	this._matchesProcessed = 0;
 }
 
-matchObject.prototype.tagMap = function(postList, b) {
+var tagMap = function(postList, b, tag, userBlog) {
 	var matchMap = {'tagCount': {}};
 	postList.forEach(function(post) {
-		if (post.type == "photo") {
+		if (post.type == "photo" && post.tags.indexOf(tag) != -1) {
 			matchMap['photo'] = post.photos[0]['alt_sizes'][0]['url'];
 			matchMap['user'] = post.blog_name;
 		}
@@ -23,36 +24,54 @@ matchObject.prototype.tagMap = function(postList, b) {
 			if (Object.keys(matchMap['tagCount']).indexOf(tag) == -1) {
 				matchMap['tagCount'][tag] = 1;
 			} else {
-				matchMap['tagCount'][tag] += 1;
+				matchMap['tagCount'][tag]++;
 			}
 		})
 	});
 	if (b) {
 		return matchMap['tagCount'];
 	} else {
-		client.posts('hedgehogsofasgard', function(err, data) {
+		var that = this;
+		client.posts(userBlog, function(err, data) {
 			userTagMap = tagMap(data.posts, true);
-			console.log(distance.match(userTagMap, matchMap['tagCount']));
-			console.log(matchMap);
+			matchMap['distance'] = (distance.match(userTagMap, matchMap['tagCount']));
 			if (Object.keys(matchMap).indexOf('user') != -1) {
-				this._matches.push(matchMap);
+				that._matches.push(matchMap);
 			}
+			that._matchesProcessed++;
 		});
 	}
 }
 
-matchObject.prototype.userSearch = function(blogname, b) {
+var userSearch = function(blogname, b, tag, userBlog) {
+	var that = this;
 	client.posts(blogname, function(err, data) {
-		tagMap(data.posts, b);
+		that.tagMap(data.posts, b, tag, userBlog);
 	});
 }
 
-matchObject.prototype.tagSearch = function(tag) {
+var tagSearch = function(tag, userBlog) {
+	var that = this;
 	client.tagged(tag, function(err, posts) {
+		that._matchCount = posts.length;
 		posts.forEach(function(post) {
-			userSearch(post.blog_name, false);
+			that.userSearch(post.blog_name, false, tag, userBlog);
 		});
 	});
 }
 
-module.exports.matchObject = matchObject;
+var getMatches = function(userBlog, tag) {
+	this.tagSearch(tag, userBlog);
+	while (this._matchCount == -1 || this._matchCount != this._matchesProcessed) {
+		setTimeout(function(){}, 100);
+	}
+	this._matches = distance.normalize(this._matches);
+	return this._matches;
+}
+
+MatchObject.prototype.tagMap = tagMap;
+MatchObject.prototype.userSearch = userSearch;
+MatchObject.prototype.tagSearch = tagSearch;
+MatchObject.prototype.getMatches = getMatches;
+
+module.exports = MatchObject;
