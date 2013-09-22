@@ -6,6 +6,7 @@ $('.carousel').carousel({
 });
 
 $("#next").click(function() {
+  console.log('here');
   $("#vidtext").show();
   $("#vid").show();
   $("#vid").empty();
@@ -16,7 +17,8 @@ $("#next").click(function() {
     $("#vid").empty();
     $('.carousel').carousel('next');
     changeCompatMessage($(".active.item").find(":first-child").attr('rating'));
-},7500);
+  },7500);
+});
 
 
 var cMess1 ='You should consider getting another pet instead';
