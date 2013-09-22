@@ -1,0 +1,56 @@
+doctype 5
+html
+  head
+    title | Pet Owner Finder
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(href="bootstrap/css/bootstrap.css", rel="stylesheet", media="screen")
+    link(href="petownerfinder.css", rel="stylesheet", media="screen")
+  body
+
+   .background
+     .container
+      #datas
+        if data
+          p.description= data[0].imgUrl
+      - var d = data; console.log(d[0].imgUrl)
+      .row
+        .span10 
+          h1(class="titleresults", align="center") Love is blind, Pets are
+        .span2
+          h1(class="title2results", align="center") NOT.
+
+      .row
+        #result(class="span12", align="center")
+          h2 Potential Matches
+          #myCarousel(class="carousel slide")
+            ol(class="carousel-indicators")
+              li(data-target="#myCarousel", data-slide-to="0", class="active")
+              li(data-target="#myCarousel", data-slide-to="1")
+              li(data-target="#myCarousel", data-slide-to="2")
+              li(data-target="#myCarousel", data-slide-to="3")
+              li(data-target="#myCarousel", data-slide-to="4")
+            .carousel-inner
+              #car(class="active item")
+                img(class="ImageBorder", id="item0")
+              .item
+                img(id="item1", class="ImageBorder")
+              .item
+                img(id="item2", class="ImageBorder")
+              .item
+                img(id="item3", class="ImageBorder")
+              .item
+                img(id="item4", class="ImageBorder")
+
+      #compat(class="row span12", align="center")
+        #compatibility
+        br
+      .row
+        #message-or-not
+          .span6(align="center")
+            button(id="yes", class="btn btn-large btn-block btn-success", type="button") I LOVE THIS PERSON'S PET!
+          .span6(align="center")
+            button(id="next", class="btn btn-large btn-block btn-danger", type="button") FUCK THIS PERSON AND THIS UGLY PET!
+
+  script(src="http://code.jquery.com/jquery.js")
+  script(src="bootstrap/js/bootstrap.js")
+  script(src="js/app.js")
