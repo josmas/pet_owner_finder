@@ -36,9 +36,9 @@ var getBlogs = function(pet, userBlog, renderCallback) {
             // Grab user tags
             results.forEach(function(obj) {
                 if ("user" in obj) userTags = obj["tagMap"];
-                if (obj[imgUrl] === '')  blogObj["hide"] = true;
+                if (obj["imgUrl"] === '')  obj["hide"] = true;
                 if (obj["blogTitle"] in usernames) {
-                    blogObj["hide"] = true;
+                    obj["hide"] = true;
                 } else {
                     usernames[obj["blogTitle"]] = true;
                 }
