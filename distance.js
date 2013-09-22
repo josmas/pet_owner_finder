@@ -20,15 +20,12 @@ module.exports = {
 		return Math.sqrt(sum);
 	},
 	normalize: function(distances) {
-		var values = [];
+		distances.sort(function(a,b) {
+			return a.distance - b.distance;
+		});
+		distances.sort();
 		for (var i = distances.length - 1; i >= 0; i--) {
-			values.push(distances[i].distance);
-		};
-  		var min = values.slice(0).sort()[0];
-  		var max = values.slice(0).sort().reverse()[0];
-		for (var i = distances.length - 1; i >= 0; i--) {
-			distances[i].distance = (max - distances[i].distance)/(max-min);
-		};
-		return distances;
+		 	distances[i].distance = i;
+		}; 
 	}
 }
