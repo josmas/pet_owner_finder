@@ -56,3 +56,5 @@ function changeCompatMessage(messageNumber){
 }
 //default message
 $('#compatibility').text(compatMessages[4]);
+
+$('#yes').click(function(){ alert('we are sending you to the tumblr'); });
