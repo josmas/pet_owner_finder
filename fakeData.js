@@ -5,11 +5,11 @@ module.exports = {
     tagMap: { sleepy: 1, sleep: 1, 'sleeping hedgehog': 1, hedgehog: 1, animals: 1, pets: 1, aww: 1, knuckles: 1, 'my buddy': 1, cute: 1, tired: 1, frisky: 1, playful: 1 }, 
     distance: 0 },
   { blogTitle: 'jos',
-    imgUrl: 'adfasdf',
+    imgUrl: 'http://24.media.tumblr.com/682996b5152ede515195f86383f8a45c/tumblr_mthme5lImD1rvuefeo1_500.jpg',
     tagMap: { cat: 2 },
     distance: 12 },
   { blogTitle: 'jostres',
-    imgUrl: 'adfasdf',
+    imgUrl: 'http://31.media.tumblr.com/e543774937d26fdb2ffe51598b38614b/tumblr_mthmikLD101rvuefeo1_500.jpg',
     tagMap: { cat: 4, frisky: 2 },
     distance: 19 },
   ] };

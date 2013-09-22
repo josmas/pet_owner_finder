@@ -9,10 +9,6 @@ html
 
    .background
      .container
-      #datas
-        if data
-          p.description= data[0].imgUrl
-      - var d = data; console.log(d[0].imgUrl)
       .row
         .span10 
           h1(class="titleresults", align="center") Love is blind, Pets are
@@ -24,22 +20,23 @@ html
           h2 Potential Matches
           #myCarousel(class="carousel slide")
             ol(class="carousel-indicators")
-              li(data-target="#myCarousel", data-slide-to="0", class="active")
-              li(data-target="#myCarousel", data-slide-to="1")
-              li(data-target="#myCarousel", data-slide-to="2")
-              li(data-target="#myCarousel", data-slide-to="3")
-              li(data-target="#myCarousel", data-slide-to="4")
+              - var firstCounter = 0;
+              each da in data
+                if (firstCounter === 0)
+                  li(data-target="#myCarousel", data-slide-to="0", class="active")
+                else 
+                  li(data-target="#myCarousel", data-slide-to="#{firstCounter}")
+                - firstCounter++;
             .carousel-inner
-              #car(class="active item")
-                img(class="ImageBorder", id="item0")
-              .item
-                img(id="item1", class="ImageBorder")
-              .item
-                img(id="item2", class="ImageBorder")
-              .item
-                img(id="item3", class="ImageBorder")
-              .item
-                img(id="item4", class="ImageBorder")
+              - var counter = 0;
+              each da in data
+                if (counter === 0)
+                  #car(class="active item")
+                    img(class="ImageBorder petImage", id="item0", src="#{da.imgUrl}")
+                else
+                  .item
+                    img(id="item#{counter}", class="ImageBorder petImage" src="#{da.imgUrl}")
+                - counter++;
 
       #compat(class="row span12", align="center")
         #compatibility
