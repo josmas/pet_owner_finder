@@ -26,6 +26,7 @@ module.exports = {
 		distances.sort();
 		for (var i = distances.length - 1; i >= 0; i--) {
 		 	distances[i].distance = i;
-		}; 
+		};
+		return distances;
 	}
 }
