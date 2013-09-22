@@ -32,10 +32,10 @@ html
               each da in data
                 if (counter === 0)
                   #car(class="active item")
-                    img(class="ImageBorder petImage", id="item0", src="#{da.imgUrl}")
+                    img(class="ImageBorder petImage", id="item0", src="#{da.imgUrl}", rating="#{da.distance}")
                 else
                   .item
-                    img(id="item#{counter}", class="ImageBorder petImage" src="#{da.imgUrl}")
+                    img(id="item#{counter}", class="ImageBorder petImage" src="#{da.imgUrl}", rating="#{da.distance}")
                 - counter++;
 
       #compat(class="row span12", align="center")

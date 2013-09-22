@@ -7,7 +7,7 @@ $('.carousel').carousel({
 
 $("#next").click(function() {
   $('.carousel').carousel('next');
-  changeCompatMessage(1); //TODO choose the right message here depending on rating
+  changeCompatMessage($(".active.item").find(":first-child").attr('rating')); //TODO choose the right message here depending on rating
 });
 
 var cMess1 ='You should consider getting another pet instead';
