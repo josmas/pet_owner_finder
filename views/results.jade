@@ -17,7 +17,7 @@ html
 
       .row
         #result(class="span12", align="center")
-          h2 Potential Matches
+          h2 It's mating season! 
           #myCarousel(class="carousel slide")
             ol(class="carousel-indicators")
               - var firstCounter = 0;
@@ -37,6 +37,10 @@ html
                   .item
                     img(id="item#{counter}", class="ImageBorder petImage" src="#{da.imgUrl}", rating="#{da.distance}", tumblr="#{da.blogTitle}")
                 - counter++;
+      .row
+        #vidtext
+          h3 PLAY THEM OFF KEYBOARD CAT!!
+        #vid(class="span12" align="center")
 
       #compat(class="row span12", align="center")
         #compatibility
