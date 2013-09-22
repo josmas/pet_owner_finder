@@ -1,4 +1,4 @@
-var async = require ('async')
+var async = require ('async');
 var tumblr = require('tumblr.js');
 var distance = require('./distance.js');
 var client = tumblr.createClient({
