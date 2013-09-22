@@ -10,7 +10,8 @@ app.get('/', function(req, res){
 });
 
 app.get('/results', function(req, res){
-  console.log(req.query.input);
+  console.log(req.query.tag);
+  console.log(req.query.blogname);
   res.render('results.html');
 });
 

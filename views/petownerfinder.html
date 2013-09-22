@@ -77,15 +77,16 @@
         <div class="span6"></div>
     </div>
 <br><br>
+<form id="target" method="get" action="results">
     <div class="row">
         <div class="span12" align="center"> <h2>Enter your unique tumblr blog name:</h2>
-         	<input type="text" placeholder="petownerfinder">
+         	<input type="text" name="blogname" placeholder="petownerfinder">
      	</div>
     </div>
 <br>
     <div class="row">
         <div class="span12" align="center"> <h2>What type of pet do you like to snuggle at night?:</h2><h4>(if you have more than one, pick your favorite)</h4>
-            <input type="text" placeholder="I <3 my pets">
+            <input type="text" name="tag" placeholder="I <3 my pets">
         </div>
     </div>
 <br>
@@ -106,9 +107,11 @@
 
 <br><br><br>
     <div class="row">
-        <div class="span12" align="center"> <h2>  <button class="btn btn-large btn-primary" type="button"><h1>Find me the perfect pet owner!</h1></button> </h2></div>
+        <div class="span12" align="center"> <h2>  <button class="btn btn-large
+              btn-primary" type="submit"><h1>Find me the perfect pet owner!</h1></button> </h2></div>
     </div>
 
+</form>
 </div>
 
 </div>
@@ -120,5 +123,6 @@
 
 </script>
 
+<script src="js/app_home.js"></script>
 </body>
 </html>
