@@ -40,4 +40,4 @@ function changeCompatMessage(messageNumber){
 //default message
 $('#compatibility').text(compatMessages[4]);
 
-$('#yes').click(function(){ alert('we are sending you to the tumblr'); });
+$('#yes').click(function(){ window.location='http://' + $(".active.item").find(":first-child").attr('tumblr') + '.tumblr.com' });
