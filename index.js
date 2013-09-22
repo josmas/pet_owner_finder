@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var fakeData = require('./fakeData').data;
 
 app.use(express.static(__dirname + '/public'));
 var engines = require('consolidate');
@@ -12,7 +13,7 @@ app.get('/', function(req, res){
 app.get('/results', function(req, res){
   console.log(req.query.tag);
   console.log(req.query.blogname);
-  res.render('results.html');
+  res.render('results.html', {data: fakeData});
 });
 
 app.get('/lala', function(req, res){
