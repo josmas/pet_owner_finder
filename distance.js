@@ -27,7 +27,7 @@ module.exports = {
   		var min = values.slice(0).sort()[0];
   		var max = values.slice(0).sort().reverse()[0];
 		for (var i = distances.length - 1; i >= 0; i--) {
-			distances[i].distance = (distances[i].distance - min)/(max-min);
+			distances[i].distance = (max - distances[i].distance)/(max-min);
 		};
 		return distances;
 	}
