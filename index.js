@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var matchFinder = require('./tagFinder.js');
 
 app.use(express.static(__dirname + '/public'));
 var engines = require('consolidate');
@@ -12,7 +13,8 @@ app.get('/', function(req, res){
 app.get('/results', function(req, res){
   console.log(req.query.tag);
   console.log(req.query.blogname);
-  res.render('results.html');
+  if (req.query.tag == '' || req.query.blogname == '') res.send("Oops! Something went wrong");
+  else matchFinder.getBlogs(req.query.tag, req.query.blogname, function(blogData){res.render('results.jade', {data: blogData})});
 });
 
 app.get('/lala', function(req, res){
