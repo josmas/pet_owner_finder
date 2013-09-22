@@ -1,8 +1,8 @@
 // distance.js
 // Finds the closest user match with n dimensions of compatability
 
-// Expects a tag:count map from the user and a tag:count map from a blog
 module.exports = {
+    // Expects a tag:count map from the user and a tag:count map from a blog
     match: function(userTags, blogTags) {
         var counts = [];
         for (var tag in userTags) {
@@ -19,7 +19,8 @@ module.exports = {
         };
         return Math.sqrt(sum);
     },
-    // Order results - closest result gets highest score
+    // Order results - closest result gets lowest score
+    // Expects array of blog objects with distance keys
     normalize: function(distances) {
         distances.sort(function(a,b) {
             return a.distance - b.distance;

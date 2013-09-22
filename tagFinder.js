@@ -17,7 +17,7 @@ var getBlogs = function(pet, userBlog) {
         userObj["tagMap"] = {};
         userObj["distance"] = -1;
         userObj["pet"] = pet;
-        userObj["user"] = true;
+        userObj["user"] = true; // set unique user object
         blogs.push(userObj);
         posts.forEach(function(post) {
             var blogObj = {};
@@ -28,12 +28,15 @@ var getBlogs = function(pet, userBlog) {
             blogObj["pet"] = pet;
             blogs.push(blogObj);
         });
+        // Populate empty object fields
         async.map(blogs, getTags, function(err, results) {
             var userTags = {};
+            // Grab user tags
             results.forEach(function(obj) {
                 if ("user" in obj) userTags = obj["tagMap"];
             });
-            console.log(getDistances(userTags, results));
+            // Populate distances and return
+            return getDistances(userTags, results);
         });
     });
 }
@@ -42,8 +45,10 @@ var getTags = function (blogObj, doneCallback) {
     client.posts(blogObj.blogTitle, function(err, data) {
         data.posts.forEach(function(post) {
             if (post.type == "photo" && post.tags.indexOf(blogObj.pet) != -1) {
+                // Link to full-size image if tag includes pet
                 blogObj["imgUrl"] = post.photos[0]['alt_sizes'][0]['url'];
             }
+            // Create tag maps for each object
             post.tags.forEach(function(tag) {
                 if (Object.keys(blogObj["tagMap"]).indexOf(tag) == -1) {
                     blogObj["tagMap"][tag] = 1;
@@ -57,9 +62,11 @@ var getTags = function (blogObj, doneCallback) {
 }
 
 var getDistances = function (userTags, blogs) {
+    // Calculate Euclidian distance of blogs from user
     blogs.forEach(function(obj) {
         obj["distance"] = (distance.match(userTags, obj["tagMap"]));
     });
+    // Return ordered results [is this properly asynchronous?]
     return distance.normalize(blogs);
 }
 
