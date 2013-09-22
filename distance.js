@@ -11,7 +11,7 @@ module.exports = {
 			} else {
 				counts.push([userTags[tag], 0]);
 			}
-		}
+		};
 
 		var sum = 0;
 		for (var i = counts.length - 1; i >= 0; i--) {
@@ -20,10 +20,12 @@ module.exports = {
 		return Math.sqrt(sum);
 	},
 	normalize: function(distances) {
-  		var min = distances.slice(0).sort()[0];
-  		var max = distances.slice(0).sort().reverse()[0];
+		distances.sort(function(a,b) {
+			return a.distance - b.distance;
+		});
+		distances.sort().reverse();
 		for (var i = distances.length - 1; i >= 0; i--) {
-			distances[i] = (distances[i] - min)/(max-min);
+		 	distances[i].distance = i;
 		};
 		return distances;
 	}
