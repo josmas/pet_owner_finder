@@ -23,7 +23,7 @@ module.exports = {
 		distances.sort(function(a,b) {
 			return a.distance - b.distance;
 		});
-		distances.sort();
+		distances.sort().reverse();
 		for (var i = distances.length - 1; i >= 0; i--) {
 		 	distances[i].distance = i;
 		};
