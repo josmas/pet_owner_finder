@@ -24,7 +24,7 @@ module.exports = {
 		distances.sort(function(a,b) {
 			return a.distance - b.distance;
 		});
-		distances.sort().reverse();
+		distances.sort();
 		for (var i = distances.length - 1; i >= 0; i--) {
 		 	distances[i].distance = i;
 		};
